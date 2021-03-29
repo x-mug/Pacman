@@ -3,6 +3,75 @@ import cfg
 import pygame
 import modules.Levels as Levels
 import modules.Util as Util
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtWidgets import QMainWindow,  QApplication
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(800, 553)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("Users/ios/.designer/backup/Users/ios/Desktop/src=http___c-ssl.duitang.com_uploads_item_201605_19_20160519225450_RHyA5.png&refer=http___c-ssl.duitang.jpeg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(310, 240, 171, 81))
+        font = QtGui.QFont()
+        font.setFamily("American Typewriter")
+        font.setPointSize(24)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_3.setGeometry(QtCore.QRect(310, 340, 171, 81))
+        font = QtGui.QFont()
+        font.setFamily("American Typewriter")
+        font.setPointSize(24)
+        font.setItalic(False)
+        self.pushButton_3.setFont(font)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(250, 80, 291, 91))
+        font = QtGui.QFont()
+        font.setFamily("Baskerville")
+        font.setPointSize(64)
+        font.setItalic(False)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(310, 160, 171, 20))
+        font = QtGui.QFont()
+        font.setFamily("American Typewriter")
+        font.setItalic(False)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "PAC-MAN"))
+        self.pushButton_2.setText(_translate("MainWindow", "Play"))
+        self.pushButton_3.setText(_translate("MainWindow", "Quit"))
+        self.label.setText(_translate("MainWindow", "PAC-MAN"))
+        self.label_2.setText(_translate("MainWindow", "Python Group Assignment"))
+
+        self.pushButton_2.clicked.connect(self.play)
+        self.pushButton_3.clicked.connect(QCoreApplication.instance().quit)
+
+    def play(self, MainWindow):
+        main(initialize())
 
 def startLevelGame(level, screen, font):
     clock = pygame.time.Clock()
@@ -127,4 +196,9 @@ def main(screen):
 
 '''run'''
 if __name__ == '__main__':
-    main(initialize())
+    app = QApplication(sys.argv)
+    mainWindow = QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(mainWindow)
+    mainWindow.show()
+    sys.exit(app.exec_())
